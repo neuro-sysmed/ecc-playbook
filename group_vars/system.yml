@@ -31,6 +31,10 @@ mysql_users:
     host: "ecc-head"
     password: slurm
     priv: "slurm_acct.*:ALL"
+  - name: slurm
+    host: "localhost"
+    password: slurm
+    priv: "slurm_acct.*:ALL"
   - name: cromwell
     host: localhost
     password: cromwell
