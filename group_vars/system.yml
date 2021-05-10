@@ -28,10 +28,6 @@ mysql_databases:
   - name: cromwell
 mysql_users: 
   - name: slurm
-    host: "ecc-head"
-    password: slurm
-    priv: "slurm_acct.*:ALL"
-  - name: slurm
     host: "localhost"
     password: slurm
     priv: "slurm_acct.*:ALL"

@@ -26,9 +26,17 @@
       include: tasks/slurm_head.yml
       tags: 'slurm'
 
-    - name: setup slurm
-      include: tasks/slurm_general.yml
-      tags: 'slurm'
-
   roles:
     - geerlingguy.mysql
+
+- hosts: ecc-node
+  become: true
+
+  vars_files:
+    group_vars/system.yml
+
+  tasks:
+    - name: install slurmd
+      include: tasks/slurm_node.yml
+      tags: 'slurm'
+
