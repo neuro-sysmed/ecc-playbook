@@ -4,8 +4,6 @@
   group:
     name: "{{ item.name }}"
     gid: "{{ item.gid }}"
-  when: (item.group_names | intersect(group_names)|length) or
-    (item.group_names[0] == 'all')
   with_items: "{{ system_groups }}"
 
 

@@ -7,27 +7,22 @@
 
 
   tasks:
-    - name: enable epel
-      package:
-        name: epel-release
-
-    - name: Install Dependencies
-      package:
-        name:
-          - python3
-          - git
-          - jq
-          - nfs-utils
-          - vim 
-          - libcgroup
-          - libcgroup-tools
-          - munge
-          - nfs-utils
-          - singularity
-
-    - name: Create users and groups
-      include: tasks/users_groups.yml
-      tags: 'users'
+    - name: Install packages
+      include: tasks/base_system.yml
+      tags: 'base'
 
 
+- hosts: ecc-head
+  become: true
 
+  vars_files:
+    group_vars/system.yml
+
+  tasks:
+    - name: install slurm head
+      include: tasks/slurm_head.yml
+      tags: 'slurm'
+
+    - name: setup slurm
+      include: tasks/slurm_general.yml
+      tags: 'slurm'

@@ -1,0 +1,21 @@
+name: enable epel
+    package:
+        name: epel-release
+
+name: Install Dependencies
+    package:
+        name:
+            - python3
+            - git
+            - jq
+            - nfs-utils
+            - vim 
+            - libcgroup
+            - libcgroup-tools
+            - munge
+            - nfs-utils
+            - singularity
+
+name: Create users and groups
+      include: ../tasks/users_groups.yml
+      tags: 'users'

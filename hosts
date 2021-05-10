@@ -1,4 +1,4 @@
-[headnode]
+[head]
 ecc-head ansible_user=sysadmin 
 
 [node]

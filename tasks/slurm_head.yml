@@ -1,0 +1,9 @@
+
+name: install slurmctld and slurmdbd
+  package:
+    - slurm-slurmctld
+    - slurmdbd
+    - platform-python-devel
+    - mariadb 
+    - mariadb-server
+
