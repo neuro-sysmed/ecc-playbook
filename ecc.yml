@@ -15,7 +15,7 @@
       include: tasks/users_groups.yml
       tags: 'users'
 
-- hosts: ecc-head
+- hosts: head
   become: true
 
   vars_files:
@@ -29,7 +29,7 @@
   roles:
     - geerlingguy.mysql
 
-- hosts: ecc-node
+- hosts: node
   become: true
 
   vars_files:
