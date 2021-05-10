@@ -1,5 +1,5 @@
-
-name: install slurmctld and slurmdbd
+---
+- name: install slurmctld and slurmdbd
   package:
     - slurm-slurmctld
     - slurmdbd
