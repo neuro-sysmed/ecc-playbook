@@ -1,0 +1,20 @@
+system_groups:
+  - { name: slurm, gid: 1025 }
+
+system_users:
+  - {
+      name: slurm,
+      uid: 1025,
+      group: slurm,
+      shell: /sbin/nologin,
+      create_home: no,
+      group_names: ["galaxyserver", "slurm"],
+    }
+  - {
+      name: brugger,
+      uid: 1026,
+      group: admin,
+      shell: /bin/bash,
+      create_home: yes,
+      group_names: ["wheel"],
+    }

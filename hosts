@@ -1,0 +1,8 @@
+[headnode]
+ecc-head ansible_user=sysadmin 
+
+[node]
+ecc-node ansible_user=sysadmin
+
+
+
