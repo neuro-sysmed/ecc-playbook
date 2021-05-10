@@ -16,13 +16,13 @@
 - name: slurm lib dir
   file:
     path: /var/lib/slurm/
-    state: present
+    state: directory
     owner: slurm
     group: slurm
 
 - name: slurm log
   file:
     path: /var/log/slurm
-    state: present
+    state: directory
     owner: slurm
     group: slurm
