@@ -7,5 +7,4 @@
       group:
         name: "{{ group.name }}"
         gid: "{{ group.gid }}"
-  when: (group.group_names | intersect(group_names)|length) or
-        (group.group_names[0] == 'all')
+
