@@ -7,11 +7,6 @@
     group: munge
     mode: 0600
 
-- name: munge key permissions
-  file:
-    owner: munge
-    group: munge
-    mode: '0600'
 
 - name: ensure munge is running
   systemd:

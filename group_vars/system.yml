@@ -13,11 +13,11 @@ system_users:
   - {
       name: brugger,
       uid: 1026,
-      group: admin,
+      group: users,
       shell: /bin/bash,
       create_home: yes,
       group_names: ["wheel"],
     }
 
 
-munge_key = 15dd2f4e7cb41a49b065db2341e7342f
+munge_key: 15dd2f4e7cb41a49b065db2341e7342f
