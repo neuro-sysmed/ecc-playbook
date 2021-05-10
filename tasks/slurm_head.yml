@@ -1,9 +1,13 @@
 ---
+- name: powertools!
+  command: "dnf config-manager --enable powertools"
+
 - name: install slurmctld and slurmdbd
   package:
-    - slurm-slurmctld
-    - slurmdbd
-    - platform-python-devel
-    - mariadb 
-    - mariadb-server
+    name:
+      - slurm-slurmctld
+      - slurmdbd
+      - platform-python-devel
+      - mariadb 
+      - mariadb-server
 

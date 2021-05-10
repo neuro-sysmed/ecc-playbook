@@ -1,35 +1,40 @@
 ---
 - name: add munge key
-    command: echo 15dd2f4e7cb41a49b065db2341e7342f  > /etc/munge/munge.key
+  copy:
+    dest: "/etc/munge/munge.key"
+    content: "{{munge_key}}"
+    owner: munge
+    group: munge
+    mode: 0600
 
 - name: munge key permissions
-    file:
-        owner: munge
-        group: munge
-        mode: '0600'
+  file:
+    owner: munge
+    group: munge
+    mode: '0600'
 
 - name: ensure munge is running
-    systemd:
-      name: munge
-      enabled: true
-      state: started
+  systemd:
+    name: munge
+    enabled: true
+    state: started
 
 - name: copy slurm conf
-    template: 
-        src: files/slurm/slurm.conf
-        dest: /etc/slurm/slurm.conf
-        mode: 0600
-        owner: slurm
-        group: slurm
-        backup: yes
+  template: 
+    src: files/slurm/slurm.conf
+    dest: /etc/slurm/slurm.conf
+    mode: 0600
+    owner: slurm
+    group: slurm
+    backup: yes
 
 
 - name: copy slurmdbd conf
-    template: 
-        src: files/slurm/slurmdbd.conf
-        dest: /etc/slurm/slurmdbd.conf
-        mode: 0600
-        owner: slurm
-        group: slurm
-        backup: yes
+  template: 
+    src: files/slurm/slurmdbd.conf
+    dest: /etc/slurm/slurmdbd.conf
+    mode: 0600
+    owner: slurm
+    group: slurm
+    backup: yes
 
