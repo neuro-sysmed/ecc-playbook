@@ -18,7 +18,7 @@
   template: 
     src: files/slurm/slurm.conf
     dest: /etc/slurm/slurm.conf
-    mode: 0600
+    mode: 0644
     owner: slurm
     group: slurm
     backup: yes
@@ -28,7 +28,7 @@
   template: 
     src: files/slurm/slurmdbd.conf
     dest: /etc/slurm/slurmdbd.conf
-    mode: 0600
+    mode: 0644
     owner: slurm
     group: slurm
     backup: yes

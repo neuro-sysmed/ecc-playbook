@@ -17,3 +17,16 @@
       - nfs-utils
       - singularity
 
+- name: nfs /software
+  file:
+    path: /software
+    state: present
+    owner: root
+    group: root
+
+- name: nfs /data
+  file:
+    path: /data
+    state: present
+    owner: root
+    group: root
