@@ -23,7 +23,9 @@ system_users:
 munge_key: 15dd2f4e7cb41a49b065db2341e7342f
 
 
-mysql_databases: [slurm_acct, cromwell]
+mysql_databases: 
+  - name: slurm_acct
+  - name: cromwell
 mysql_users: 
   - name: slurm
     host: "ecc-head"

@@ -1,7 +1,8 @@
 ---
 - name: powertools!
   command: dnf config-manager --enable PowerTools
-  warn: false
+  args:
+    warn: false
 
 - name: install slurmctld and slurmdbd
   package:
@@ -32,3 +33,32 @@
     enabled: true
     state: started
 
+- name: copy slurm conf
+  template: 
+    src: files/slurm/slurm.conf
+    dest: /etc/slurm/slurm.conf
+    mode: 0644
+    owner: slurm
+    group: slurm
+    backup: yes
+
+- name: copy slurmdbd conf
+  template: 
+    src: files/slurm/slurmdbd.conf
+    dest: /etc/slurm/slurmdbd.conf
+    mode: 0644
+    owner: slurm
+    group: slurm
+    backup: yes
+
+- name: start slurmdbd
+  systemd:
+    name: slurmdbd
+    enabled: true
+    state: started
+
+- name: start slurmctld
+  systemd:
+    name: slurmctld
+    enabled: true
+    state: started
