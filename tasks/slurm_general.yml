@@ -23,7 +23,6 @@
     group: slurm
     backup: yes
 
-
 - name: copy slurmdbd conf
   template: 
     src: files/slurm/slurmdbd.conf

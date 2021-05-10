@@ -1,8 +1,7 @@
 ---
 - name: powertools!
-  dnf:
-    name: "@PowerTools"
-    state: present
+  command: dnf config-manager --enable PowerTools
+  warn: false
 
 - name: install slurmctld and slurmdbd
   package:
@@ -26,3 +25,10 @@
     state: directory
     owner: slurm
     group: slurm
+
+- name: start mariadb
+  systemd:
+    name: mariadb
+    enabled: true
+    state: started
+

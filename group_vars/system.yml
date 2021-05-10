@@ -21,3 +21,15 @@ system_users:
 
 
 munge_key: 15dd2f4e7cb41a49b065db2341e7342f
+
+
+mysql_databases: [slurm_acct, cromwell]
+mysql_users: 
+  - name: slurm
+    host: "ecc-head"
+    password: slurm
+    priv: "slurm_acct.*:ALL"
+  - name: cromwell
+    host: localhost
+    password: cromwell
+    priv: "cromwell.*:ALL"

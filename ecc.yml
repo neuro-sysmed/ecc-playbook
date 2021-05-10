@@ -29,3 +29,6 @@
     - name: setup slurm
       include: tasks/slurm_general.yml
       tags: 'slurm'
+
+  roles:
+    - geerlinguy.mysql
