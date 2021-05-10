@@ -10,7 +10,9 @@
     - name: Install packages
       include: tasks/base_system.yml
       tags: 'base'
-
+    - name: Create users and groups
+      include: ../tasks/users_groups.yml
+      tags: 'users'
 
 - hosts: ecc-head
   become: true

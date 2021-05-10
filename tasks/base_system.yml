@@ -1,8 +1,8 @@
-name: enable epel
+- name: enable epel
     package:
         name: epel-release
 
-name: Install Dependencies
+- name: Install Dependencies
     package:
         name:
             - python3
@@ -16,6 +16,3 @@ name: Install Dependencies
             - nfs-utils
             - singularity
 
-name: Create users and groups
-      include: ../tasks/users_groups.yml
-      tags: 'users'
