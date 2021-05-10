@@ -1,5 +1,2 @@
 ansible
-#ephemeris
-#pika
-#cloudflare
-#tabulate
+
