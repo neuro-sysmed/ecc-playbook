@@ -1,5 +1,5 @@
 - name: powertools!
-  command: dnf config-manager --enable PowerTools
+  command: dnf config-manager --enable powertools
   args:
     warn: false
 

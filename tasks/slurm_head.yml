@@ -1,6 +1,6 @@
 ---
 - name: powertools!
-  command: dnf config-manager --enable PowerTools
+  command: dnf config-manager --enable powertools
   args:
     warn: false
 
@@ -55,10 +55,10 @@
   systemd:
     name: slurmdbd
     enabled: true
-    state: started
+    state: restarted
 
 - name: start slurmctld
   systemd:
     name: slurmctld
     enabled: true
-    state: started
+    state: restarted

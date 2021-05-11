@@ -17,6 +17,11 @@
       - nfs-utils
       - singularity
 
+- name: update system
+  yum:
+    name: '*'
+    state: latest
+
 - name: nfs /software
   file:
     path: /software
