@@ -27,5 +27,8 @@ cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 
 ansible-playbook ecc.yml
 
+az login 
+# follow instructions...
+
 
 ```
