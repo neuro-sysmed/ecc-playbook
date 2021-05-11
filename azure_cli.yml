@@ -1,0 +1,8 @@
+
+- hosts: head
+  become: true
+
+
+  tasks:
+    - name: azure bits!
+      include: tasks/azure_cli.yml
