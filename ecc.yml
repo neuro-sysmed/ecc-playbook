@@ -25,6 +25,8 @@
     - name: install slurm head
       include: tasks/slurm_head.yml
       tags: 'slurm'
+    - name: azure bits
+      include: tasks/azure_cli.yml
 
   roles:
     - geerlingguy.mysql
