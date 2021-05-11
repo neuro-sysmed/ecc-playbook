@@ -5,7 +5,7 @@
 
 - name: Add repository (RedHat)
   yum_repository:
-    name: Azure CLI
+    name: azure_cli
     description: Galaxy Packages for Enterprise Linux $releasever - $basearch
     baseurl: https://packages.microsoft.com/yumrepos/azure-cli
     gpgcheck: yes
