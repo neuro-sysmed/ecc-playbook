@@ -26,13 +26,13 @@
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
     dest: /cluster/jars/
-    mode: '06440'
+    mode: '0644'
 
 - name: download womtool-jar
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
     dest: /cluster/jars/
-    mode: '06440'
+    mode: '0644'
 
 - name: make imports paths absolute
   command: 
