@@ -14,7 +14,6 @@
   git:
     repo: https://github.com/neuromics/nsm-analysis.git
     dest: "{{ nsm_analysis_root }}"
-    version: azure
 
 - name: make imports paths absolute
   command: 
