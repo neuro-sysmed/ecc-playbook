@@ -1,50 +1,23 @@
-
-- name: Git checkout of ecc azure branch!
+- name: Git checkout of ecc-playbook azure branch!
   git:
-    repo: 'https://github.com/neuromics/ecc.git@azure'
-    dest: "{{ ecc_root }}"
+    repo: 'https://github.com/neuromics/ecc-playbook'
+    dest: "{{ ecc_playbook_root }}"
 
-- name: create venv in {{ nels_galaxy_api_root }}
+- name: create venv in {{ ecc_playbook_root }}
   command:
-    chdir: "{{  ecc_root }}"
+    chdir: "{{  ecc_playbook_root }}"
     cmd: python3 -m venv venv
-    creates: "{{  ecc_root }}/venv"
+    creates: "{{  ecc_playbook_root }}/venv"
 
-- name: Install specified python requirements for ecc
+- name: Install specified python requirements for ecc-playbook
   pip:
-    requirements: "{{  ecc_root }}/requirements.txt"
-    virtualenv: "{{  ecc_root }}/venv"
+    requirements: "{{  ecc_playbook_root }}/requirements.txt"
+    virtualenv: "{{  ecc_playbook_root }}/venv"
 
-
-- name: check if ssh-key exists
-  become: true
+- name: Install specified ansible requirements
+  command: "{{  ecc_playbook_root }}/venv"
+  command: ./venv/bin/ansible-galaxy install -p roles -r requirements.yml
+  become: yes
   become_user: "{{ecc_user}}"
-  stat:
-    path: $HOME/.ssh/id_rsa
-  register: ssh_key
-
-- name: create ssh key for connecting to nodes
-  become: true
-  become_user: "{{ecc_user}}"
-  command: ssh-keygen -t rsa -f $HOME/.ssh/id_rsa -q -P ""
-  when: ssh_key.stat.exists == false
-
-- name: fetch created public ssh key
-  become: true
-  become_user: "{{ecc_user}}"
-  shell: cat ~/.ssh/id_rsa.pub
-  register: ssh_pub_key_cat
-
-- name: store pub-key to be used later (seems off)
-  set_fact:
-    ssh_key: "{{ssh_pub_key_cat.stdout}}"
-
-- name: Deploy ecc config file, will keep local copy if exists!
-  template:
-    src: templates/ecc/ecc.yam.j2
-    dest: "{{ecc_root}/ecc.yaml"
-    owner: "{{ecc_user}}"
-    force: no
-
-
-
+  args:
+    chdir: "{{ ecc_playbook_root }}"
