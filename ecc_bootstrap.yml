@@ -3,7 +3,8 @@
   become: true
 
   vars_files:
-    group_vars/system.yml
+    - group_vars/system.yml
+ 
 
 
   tasks:
@@ -19,7 +20,8 @@
   become: true
 
   vars_files:
-    group_vars/system.yml
+   - group_vars/system.yml
+   - secret_group_vars/system.vault    
 
   tasks:
     - name: install slurm head

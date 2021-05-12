@@ -54,8 +54,8 @@
 
 - name: Deploy ecc config file, will keep local copy if exists!
   template:
-    src: templates/ecc/ecc.yam.j2
-    dest: "{{ecc_root}/ecc.yaml"
+    src: templates/ecc/ecc.yaml.j2
+    dest: "{{ecc_root}}/ecc.yaml"
     owner: "{{ecc_user}}"
     force: no
 
