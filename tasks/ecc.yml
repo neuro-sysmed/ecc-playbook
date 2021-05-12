@@ -4,7 +4,7 @@
     repo: 'https://github.com/neuromics/ecc.git@azure'
     dest: "{{ ecc_root }}"
 
-- name: create venv in {{ nels_galaxy_api_root }}
+- name: create venv in {{ ecc_root }}
   command:
     chdir: "{{  ecc_root }}"
     cmd: python3 -m venv venv

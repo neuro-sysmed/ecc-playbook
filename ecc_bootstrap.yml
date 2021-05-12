@@ -27,6 +27,8 @@
       tags: 'slurm'
     - name: azure bits
       include: tasks/azure_cli.yml
+    - name: install ecc
+      include: tasks/ecc.yml
 
   roles:
     - geerlingguy.mysql
