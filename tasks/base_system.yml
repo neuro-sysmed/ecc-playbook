@@ -30,10 +30,10 @@
 
 
 - name: Add another bin dir to system-wide $PATH.
-      copy:
-        dest: /etc/profile.d/custom-path.sh
-        content: 'PATH=$PATH:/cluster/bin/'
-        mode: 0600
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:/cluster/bin/'
+    mode: 0600
 
 - name: update system
   yum:
