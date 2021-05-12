@@ -37,7 +37,9 @@ mysql_users:
     priv: "cromwell.*:ALL"
 
 
-ecc_root: /cluster/software/ecc
+ecc_root: /cluster/lib/ecc
 ecc_user: sysadmin
 
-#ecc_playbook_root: /cluster/software/ecc-playbook
+nsm_analysis_root: /cluster/lib/nsm-analysis
+nsm_analysis_user: sysadmin
+

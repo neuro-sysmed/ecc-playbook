@@ -31,11 +31,17 @@
       include: tasks/azure_cli.yml
       tags: 'azure'
     - name: install ecc
+      become: true
+      become_user: "{{ecc_user}}"
       include: tasks/ecc.yml
       tags: 'ecc'
+    - name: wdl bits
+      include: tasks/wdl_related.yml
+      tags: 'wdl'
 
   roles:
     - geerlingguy.mysql
+    - geerlingguy.java
 
 - hosts: node
   become: true

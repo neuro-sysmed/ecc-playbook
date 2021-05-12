@@ -18,12 +18,16 @@
     creates: "{{  ecc_root }}/venv"
 
 - name: update pip
+  become: true
+  become_user: "{{ecc_user}}"
   pip: 
     name: pip
     extra_args: --upgrade
     virtualenv: "{{  ecc_root }}/venv"
 
 - name: Install specified python requirements for ecc
+  become: true
+  become_user: "{{ecc_user}}"
   pip:
     requirements: "{{  ecc_root }}/requirements.txt"
     virtualenv: "{{  ecc_root }}/venv"
