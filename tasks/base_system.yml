@@ -22,9 +22,9 @@
     name: '*'
     state: latest
 
-- name: nfs /software
+- name: nfs /cluster
   file:
-    path: /software
+    path: /cluster
     state: directory
     owner: root
     group: root
@@ -49,3 +49,19 @@
     name: munge
     enabled: true
     state: started
+
+- name: Mount data NFS volume
+  ansible.posix.mount:
+    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-data
+    path: /data
+    opts: rw,vers=4,minorversion=1,sec=sys
+    state: mounted
+    fstype: nfs
+
+- name: Mount cluster NFS volume
+  ansible.posix.mount:
+    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster
+    path: /cluster
+    opts: rw,vers=4,minorversion=1,sec=sys
+    state: mounted
+    fstype: nfs
