@@ -17,6 +17,24 @@
       - nfs-utils
       - singularity
 
+- name: update pip
+  pip: 
+    name: pip
+    extra_args: --upgrade
+
+
+- name: pip install wheel
+  pip: 
+    name: wheel
+    extra_args: --upgrade
+
+
+- name: Add another bin dir to system-wide $PATH.
+      copy:
+        dest: /etc/profile.d/custom-path.sh
+        content: 'PATH=$PATH:/cluster/bin/'
+        mode: 0600
+
 - name: update system
   yum:
     name: '*'

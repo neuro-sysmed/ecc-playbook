@@ -38,14 +38,3 @@
     dest: /cluster/jars/
     mode: '0440'
 
-- name: Create a symbolic link to cromwell wrapper
-  ansible.builtin.file:
-    src: "{{  nsm_analysis_root }}/bin/cromwell"
-    dest: /cluster/bin/cromwell
-    state: link
-
-- name: Create a symbolic link to womtool wrapper
-  ansible.builtin.file:
-    src: "{{  nsm_analysis_root }}/bin/womtool"
-    dest: /cluster/bin/womtool
-    state: link
