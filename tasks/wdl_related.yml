@@ -2,7 +2,7 @@
 - name: install cromwell-utils
   pip:
     name: git+https://www.github.com/neuromics/cromwell-utils.git
-    extra_args: --upgrade --prefix=/cluster/
+    extra_args: --prefix=/cluster/ 
 
 - name: make dir for nsm-analysis
   file:
@@ -15,6 +15,7 @@
     repo: https://github.com/neuromics/nsm-analysis.git
     dest: "{{ nsm_analysis_root }}"
     version: reorg
+    force: yes
 
 - name: ensure jar dir exists
   file:
@@ -25,13 +26,13 @@
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
     dest: /cluster/jars/
-    mode: '0440'
+    mode: '06440'
 
 - name: download womtool-jar
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
     dest: /cluster/jars/
-    mode: '0440'
+    mode: '06440'
 
 - name: make imports paths absolute
   command: 
