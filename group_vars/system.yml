@@ -40,4 +40,4 @@ mysql_users:
 ecc_root: /cluster/software/ecc
 ecc_user: sysadmin
 
-ecc_playbook_root: /cluster/software/ecc-playbook
+#ecc_playbook_root: /cluster/software/ecc-playbook
