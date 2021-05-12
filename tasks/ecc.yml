@@ -1,4 +1,9 @@
 
+- name: make dir for ecc
+  file:
+    path: "{{ ecc_root }}"
+    owner: "{{ecc_user}}"
+
 - name: Git checkout of ecc azure branch!
   git:
     repo: 'https://github.com/neuromics/ecc.git@azure'

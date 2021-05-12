@@ -31,7 +31,7 @@
 
 - name: nfs /data
   file:
-    path: /software
+    path: /data
     state: directory
     owner: root
     group: root
