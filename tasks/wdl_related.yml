@@ -1,7 +1,7 @@
 
 - name: install cromwell-utils
   pip:
-    name: git+https://www.github.com:neuromics/cromwell-utils.git
+    name: git+https://www.github.com/neuromics/cromwell-utils.git
     extra_args: --upgrade --prefix=/cluster/
 
 - name: make dir for nsm-analysis
