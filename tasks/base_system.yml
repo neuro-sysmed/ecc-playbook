@@ -33,7 +33,6 @@
   copy:
     dest: /etc/profile.d/custom-path.sh
     content: 'PATH=$PATH:/cluster/bin/'
-    mode: 0600
 
 - name: update system
   yum:

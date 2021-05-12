@@ -14,11 +14,7 @@
   git:
     repo: https://github.com/neuromics/nsm-analysis.git
     dest: "{{ nsm_analysis_root }}"
-
-- name: make imports paths absolute
-  command: 
-    chdir: "{{  nsm_analysis_root }}"
-    cmd: /cluster/bin/cromwell-cli utils set-paths {{ nsm_analysis_root}}
+    version: reorg
 
 - name: ensure jar dir exists
   file:
@@ -37,3 +33,7 @@
     dest: /cluster/jars/
     mode: '0440'
 
+- name: make imports paths absolute
+  command: 
+    chdir: "{{  nsm_analysis_root }}"
+    cmd: /cluster/bin/cromwell-cli utils set-paths {{ nsm_analysis_root}}
