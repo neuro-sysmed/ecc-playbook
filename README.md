@@ -25,11 +25,14 @@ ansible-playbook ecc_bootstrap.yml
 az login 
 # follow instructions...
 
+deactivate
 cd /cluster/lib/ecc
 source venv/bin/activate
 ./bin/ecc-cli add ecc-node 
+deactivate
 
 cd -
+source venv/bin/activate
 ansible-playbook ecc_bootstrap.yml
 
 
