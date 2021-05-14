@@ -20,15 +20,18 @@ pip install -r requirements.txt
 
 ansible-galaxy install -p roles -r requirements.yml
 
-
-ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y
-
-cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
-
-ansible-playbook ecc.yml
+ansible-playbook ecc_bootstrap.yml
 
 az login 
 # follow instructions...
+
+cd /cluster/lib/ecc
+source venv/bin/activate
+./bin/ecc-cli add ecc-node 
+
+cd -
+ansible-playbook ecc_bootstrap.yml
+
 
 
 ```
