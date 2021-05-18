@@ -9,6 +9,7 @@
   git:
     repo: https://github.com/neuromics/ecc.git
     dest: "{{ ecc_root }}"
+    force: true
     version: azure
 
 - name: create venv in {{ ecc_root }}
