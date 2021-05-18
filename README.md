@@ -54,6 +54,8 @@ tags:
 createdBy: Your name
 
 review & create
+Once create view resource and note the resource id!
+
 
 
 
