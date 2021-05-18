@@ -63,5 +63,37 @@
     owner: "{{ecc_user}}"
     force: no
 
+- name: install ecc-playbook in {{ ecc_playbook_root }}
+  git:
+    repo: https://github.com/neuromics/ecc-playbook.git
+    dest: "{{ ecc_playbook_root }}"
+  
+- name: create venv in {{ ecc_playbook_root }}
+  command:
+    chdir: "{{ ecc_playbook_root }}"
+    cmd: python3 -m venv venv
+    creates: "{{ ecc_playbook_root }}/venv"
 
+- name: update pip
+  become: true
+  become_user: "{{ecc_user}}"
+  pip: 
+    name: pip
+    extra_args: --upgrade
+    virtualenv: "{{  ecc_playbook_root }}/venv"
+
+- name: Install specified python requirements for ecc
+  become: true
+  become_user: "{{ecc_user}}"
+  pip:
+    requirements: "{{  ecc_root }}/requirements.txt"
+    virtualenv: "{{  ecc_playbook_root }}/venv"
+
+
+- name: Install ansible roles
+  become: true
+  become_user: "{{ecc_user}}"
+  command:
+    chdir: "{{  ecc_playbook_root }}"
+    cmd: ./venv/bin/ansible-galaxy install -p roles -r requirements.yml
 
