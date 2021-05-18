@@ -2,7 +2,8 @@
 Playbooks for ecc
 
 
-Install
+Install head nodes
+==================
 
 ```
 sudo yum install -y git
@@ -35,6 +36,31 @@ cd -
 source venv/bin/activate
 ansible-playbook ecc_bootstrap.yml
 
-
-
 ```
+
+Create images
+------------
+
+This is to be done with both the ecc-head and ecc-node vms
+
+
+go to the azure portal 
+select ecc-node (in virtual machines )
+Top bar click capture (?)
+dont share in gallery
+Auto delete after creation
+Keep default name (ecc-node-image-datetime)
+tags:
+createdBy: Your name
+
+review & create
+
+
+
+
+
+
+
+
+
+
