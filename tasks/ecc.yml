@@ -53,7 +53,7 @@
   shell: cat ~/.ssh/id_rsa.pub
   register: ssh_pub_key_cat
 
-- name: store pub-key to be used later (seems off)
+- name: store pub-key to be used later
   set_fact:
     ssh_key: "{{ssh_pub_key_cat.stdout}}"
 
@@ -83,15 +83,15 @@
     extra_args: --upgrade
     virtualenv: "{{  ecc_playbook_root }}/venv"
 
-- name: Install specified python requirements for ecc
+- name: Install specified python requirements for ecc-playbook
   become: true
   become_user: "{{ecc_user}}"
   pip:
-    requirements: "{{  ecc_root }}/requirements.txt"
+    requirements: "{{  ecc_playbook_root }}/requirements.txt"
     virtualenv: "{{  ecc_playbook_root }}/venv"
 
 
-- name: Install ansible roles
+- name: Install ecc-playbook ansible roles
   become: true
   become_user: "{{ecc_user}}"
   command:
