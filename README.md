@@ -2,7 +2,8 @@
 Playbooks for ecc
 
 
-Install
+Install head nodes
+==================
 
 ```
 sudo yum install -y git
@@ -20,15 +21,48 @@ pip install -r requirements.txt
 
 ansible-galaxy install -p roles -r requirements.yml
 
-
-ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y
-
-cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
-
-ansible-playbook ecc.yml
+ansible-playbook ecc_bootstrap.yml
 
 az login 
 # follow instructions...
 
+deactivate
+cd /cluster/lib/ecc
+source venv/bin/activate
+./bin/ecc-cli add ecc-node 
+deactivate
+
+cd -
+source venv/bin/activate
+ansible-playbook ecc_bootstrap.yml
 
 ```
+
+Create images
+------------
+
+This is to be done with both the ecc-head and ecc-node vms
+
+
+go to the azure portal 
+select ecc-node (in virtual machines )
+Top bar click capture (?)
+dont share in gallery
+Auto delete after creation
+Keep default name (ecc-node-image-datetime)
+tags:
+createdBy: Your name
+
+review & create
+Once create view resource and note the resource id!
+
+
+
+
+
+
+
+
+
+
+
