@@ -5,8 +5,6 @@
   vars_files:
     - group_vars/system.yml
  
-
-
   tasks:
     - name: Install packages
       include: tasks/base_system.yml
