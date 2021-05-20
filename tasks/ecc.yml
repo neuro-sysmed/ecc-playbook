@@ -98,3 +98,10 @@
     chdir: "{{  ecc_playbook_root }}"
     cmd: ./venv/bin/ansible-galaxy install -p roles -r requirements.yml
 
+
+- name: Copy vault_password file 
+  copy:
+    src: vault_password
+    dest: "{{  ecc_playbook_root }}/vault_password"
+    owner: "{{ecc_user}}"
+    mode: '0644'
