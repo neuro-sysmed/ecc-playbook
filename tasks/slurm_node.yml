@@ -3,7 +3,7 @@
   args:
     warn: false
 
-- name: install slurmctld and slurmdbd
+- name: install slurmd
   package:
     name:
       - slurm-slurmd
@@ -26,7 +26,7 @@
     group: slurm
     backup: yes
 
-- name: start slurmdbd
+- name: start slurmd
   systemd:
     name: slurmd
     enabled: true
