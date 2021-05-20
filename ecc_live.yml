@@ -5,6 +5,7 @@
   vars_files:
     group_vars/system.yml
 
+  tasks:
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
@@ -20,7 +21,7 @@
         mode: 0644
         owner: slurm
         group: slurm
-    backup: yes
+        backup: yes
     - name: restart slurmd
       systemd:
         name: slurmd
