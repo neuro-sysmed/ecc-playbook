@@ -8,8 +8,21 @@
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
-
-    - name: restart slurm services
-      include: tasks/slurm_restarts.yml
-      tags: 'slurm-restart'
       
+- hosts: node
+  become: true
+
+  tasks:
+    - name: copy slurm conf
+      template: 
+        src: files/slurm/slurm.conf
+        dest: /etc/slurm/slurm.conf
+        mode: 0644
+        owner: slurm
+        group: slurm
+    backup: yes
+    - name: restart slurmd
+      systemd:
+        name: slurmd
+        enabled: true
+        state: restarted
