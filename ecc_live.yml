@@ -9,19 +9,22 @@
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
+    - name: Update slurm config
+      include: tasks/slurm_live.yml
       
+
+- hosts: head
+  become: true
+  tasks:
+    - name: restart slurmctld
+      systemd:
+        name: slurmctld
+        enabled: true
+        state: restarted
+
 - hosts: node
   become: true
-
   tasks:
-    - name: copy slurm conf
-      template: 
-        src: files/slurm/slurm.conf
-        dest: /etc/slurm/slurm.conf
-        mode: 0644
-        owner: slurm
-        group: slurm
-        backup: yes
     - name: restart slurmd
       systemd:
         name: slurmd
