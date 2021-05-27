@@ -20,6 +20,7 @@ cd ecc-playbook
 pip install -r requirements.txt
 
 ansible-galaxy install -p roles -r requirements.yml
+ansible-galaxy collection install -r requirements.yml
 
 ansible-playbook ecc_bootstrap.yml
 
