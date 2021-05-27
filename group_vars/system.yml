@@ -1,3 +1,6 @@
+head_node: ecc-head
+
+
 system_groups:
   - { name: slurm, gid: 1025 }
 
@@ -46,3 +49,39 @@ nsm_analysis_root: /cluster/lib/nsm-analysis
 nsm_analysis_user: sysadmin
 
 ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"
+
+
+#influxdb_host: "{{ headnode_hostname }}:8086"
+influx_user: ecc
+influx_password: ecc_s3cr3t
+influxdb_database: ecc
+
+# Install the latest version of Telegraf
+telegraf_agent_package_state: latest
+
+telegraf_agent_hostname: "{{ headnode_hostname }}"
+telegraf_agent_interval: "60" # seconds
+
+telegraf_agent_output:
+  - type: influxdb
+    config:
+      - urls = http://{{ headnode_hostname }}:8086
+      - database = "{{ influx_database }}"
+      - username = "{{ influx_username }}"
+      - password = "{{ influx_password }}"
+
+#example config, needs to be determined later on
+telegraf_plugins_default:
+  - plugin: cpu
+    config:
+      - percpu = false
+  - plugin: disk
+  - plugin: kernel
+  - plugin: processes
+  - plugin: io
+  - plugin: mem
+  - plugin: system
+  - plugin: swap
+  - plugin: net
+  - plugin: netstat
+  - plugin: chrony

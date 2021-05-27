@@ -1,8 +1,7 @@
-
 # Dont like this, but works for now
 - name: create dynamic slurm node list (debug)
   debug:
-    msg:
+    msg: 
     - "hostname: {{ item }}"
     - "cores: {{ hostvars[ item ].ansible_processor_cores }}"
     - "CPUs: {{ hostvars[ item ].ansible_processor_count }}"
@@ -11,6 +10,7 @@
     - "mem: {{ hostvars[ item ].ansible_memtotal_mb }}"
   with_items: "{{ groups['node'] }}"
 
+ 
 
 
 # Dont like this, but works for now

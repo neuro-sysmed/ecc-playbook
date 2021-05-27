@@ -18,13 +18,13 @@ SlurmUser=slurm
 StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
-
 # Nodes
 {% for i in slurm_nodes %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
 {% else %}
 NodeName=localhost State=UNKNOWN
 {% endfor %}
 
 # Partition
-PartitionName=debug Default=YES Nodes={{ (slurm_nodes[0] | default({})).name | default('localhost') }} State=UP MaxTime=UNLIMITED 
+PartitionName=azure State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'node' ] | join(',') }}

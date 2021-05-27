@@ -23,7 +23,7 @@
 
 - src: https://github.com/dj-wasabi/ansible-telegraf
   name: dj-wasabi.telegraf
-- src: idiv-biodiversity.postfix
-  version: v0.4.0
-#- src: indigo-dc.nfs
+#- src: idiv-biodiversity.postfix
+#  version: v0.4.0
+
 
