@@ -52,7 +52,7 @@ ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"
 
 
 #influxdb_host: "{{ headnode_hostname }}:8086"
-influx_user: ecc
+influx_username: ecc
 influx_password: ecc_s3cr3t
 influxdb_database: ecc
 
