@@ -40,7 +40,7 @@
 
 - name: Create influx database
   community.general.influxdb_database:
-      hostname: "{{influxdb_host | default "localhost:8086"}}"
+      hostname: "{{influxdb_host | default 'localhost:8086'}}"
       database_name: "{{influxdb_database}}"
 
     
