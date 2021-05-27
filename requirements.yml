@@ -26,4 +26,5 @@
 #- src: idiv-biodiversity.postfix
 #  version: v0.4.0
 
-
+collections:
+- name: community.general

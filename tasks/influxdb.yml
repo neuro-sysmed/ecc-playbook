@@ -24,16 +24,16 @@
       - influxdb
       - grafana
 
-- name: influx config
-  template:
-    src: templates/influx/influxdb.conf.j2
-    dest: /etc/influxdb/influxdb.conf
-    owner: root
+#- name: influx config
+#  template:
+#    src: templates/influxdb/influxdb.conf.j2
+#    dest: /etc/influxdb/influxdb.conf
+#    owner: root
 
 - name: start influxdb
   service:
     name: influxdb
-    state: restart
+    state: restarted
     
 - name: Create a user on localhost using default login credentials
   community.general.influxdb_user:
@@ -49,4 +49,4 @@
 - name: start grafana
   service:
     name: grafana
-    state: restart
+    state: restarted
