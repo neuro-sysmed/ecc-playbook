@@ -14,6 +14,11 @@
       include: tasks/users_groups.yml
       tags: 'users'
 
+    - name: Install influxdb and grafana
+      include: tasks/influxdb.yml
+      tags: 'influxdb'
+
+
 - hosts: head
   become: true
 
