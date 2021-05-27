@@ -24,6 +24,7 @@
       - influxdb
       - grafana
 
+
 #- name: influx config
 #  template:
 #    src: templates/influxdb/influxdb.conf.j2
@@ -38,6 +39,9 @@
 - name: install python-influxdb
   pip: 
     name: influxdb
+    executable: pip-3
+
+
 
 
 - name: Create a user on localhost using default login credentials
@@ -47,11 +51,11 @@
 
 - name: Create influx database
   community.general.influxdb_database:
-      hostname: "{{influxdb_host | default ('localhost:8086')}}"
+      hostname: "{{influxdb_host | default ('localhost')}}"
       database_name: "{{influxdb_database}}"
 
     
 - name: start grafana
   service:
-    name: grafana
+    name: grafana-server
     state: restarted
