@@ -35,6 +35,11 @@
     name: influxdb
     state: restarted
     
+- name: install python-influxdb
+  pip: 
+    name: influxdb
+
+
 - name: Create a user on localhost using default login credentials
   community.general.influxdb_user:
     user_name: "{{influx_username}}"
@@ -42,7 +47,7 @@
 
 - name: Create influx database
   community.general.influxdb_database:
-      hostname: "{{influxdb_host | default 'localhost:8086'}}"
+      hostname: "{{influxdb_host | default ('localhost:8086')}}"
       database_name: "{{influxdb_database}}"
 
     
