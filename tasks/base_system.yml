@@ -20,12 +20,14 @@
 - name: update pip
   pip: 
     name: pip
+    executable: pip-3
     extra_args: --upgrade
 
 
 - name: pip install wheel
   pip: 
     name: wheel
+    executable: pip-3
     extra_args: --upgrade
 
 

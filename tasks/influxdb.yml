@@ -51,8 +51,8 @@
 
 - name: Create influx database
   community.general.influxdb_database:
-      hostname: "{{influxdb_host | default ('localhost')}}"
-      database_name: "{{influxdb_database}}"
+      hostname: "{{influx_host | default ('localhost')}}"
+      database_name: "{{influx_database}}"
 
     
 - name: start grafana

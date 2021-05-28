@@ -2,6 +2,9 @@
 - hosts: all
   become: true
 
+  tags:
+    - basesystem
+
   vars_files:
     - group_vars/system.yml
  
@@ -13,11 +16,6 @@
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
-
-    - name: Install influxdb and grafana
-      include: tasks/influxdb.yml
-      tags: 'influxdb'
-
 
 - hosts: head
   become: true
@@ -43,6 +41,10 @@
       become_user: "{{ecc_user}}"
       include: tasks/wdl_related.yml
       tags: 'wdl'
+    - name: Install influxdb and grafana
+      include: tasks/influxdb.yml
+      tags: 'influxdb'
+
 
   roles:
     - geerlingguy.mysql
