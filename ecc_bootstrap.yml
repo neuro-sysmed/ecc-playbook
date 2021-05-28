@@ -17,6 +17,9 @@
       include: tasks/users_groups.yml
       tags: 'users'
 
+  roles:
+    - dj-wasabi.telegraf
+
 - hosts: head
   become: true
 
