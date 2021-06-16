@@ -1,4 +1,4 @@
-- name: Git checkout of ecc-playbook azure branch!
+- name: Git checkout of ecc-playbook 
   git:
     repo: 'https://github.com/neuromics/ecc-playbook'
     dest: "{{ ecc_playbook_root }}"

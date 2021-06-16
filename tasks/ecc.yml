@@ -1,38 +1,8 @@
 
-- name: make dir for ecc
-  file:
-    path: "{{ ecc_root }}"
-    owner: "{{ecc_user}}"
-    state: directory
-
-- name: Git checkout of ecc azure branch!
-  git:
-    repo: https://github.com/neuromics/ecc.git
-    dest: "{{ ecc_root }}"
-    force: true
-    version: azure
-
-- name: create venv in {{ ecc_root }}
-  command:
-    chdir: "{{  ecc_root }}"
-    cmd: python3 -m venv venv
-    creates: "{{  ecc_root }}/venv"
-
-- name: update pip
-  become: true
-  become_user: "{{ecc_user}}"
-  pip: 
-    name: pip
-    extra_args: --upgrade
-    virtualenv: "{{  ecc_root }}/venv"
-
-- name: Install specified python requirements for ecc
-  become: true
-  become_user: "{{ecc_user}}"
+- name: install ecc
   pip:
-    requirements: "{{  ecc_root }}/requirements.txt"
-    virtualenv: "{{  ecc_root }}/venv"
-
+    name: git+https://github.com/neuromics/ecc.git@azure
+    extra_args: --prefix=/cluster/ 
 
 - name: check if ssh-key exists
   become: true
@@ -60,7 +30,7 @@
 - name: Deploy ecc config file, will keep local copy if exists!
   template:
     src: templates/ecc/ecc.yaml.j2
-    dest: "{{ecc_root}}/ecc.yaml"
+    dest: "{{cluster_root}}/etc/ecc.yaml"
     owner: "{{ecc_user}}"
     force: no
 
