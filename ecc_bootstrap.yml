@@ -19,6 +19,7 @@
 
   roles:
     - dj-wasabi.telegraf
+    - neuromics.linux-vm
 
 - hosts: head
   become: true

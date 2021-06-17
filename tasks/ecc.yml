@@ -1,8 +1,9 @@
 
 - name: install ecc
   pip:
+    executable: pip-3
     name: git+https://github.com/neuromics/ecc.git@azure
-    extra_args: --prefix=/cluster/ 
+    extra_args: --prefix=/cluster/  --ignore-installed --no-warn-script-location
 
 - name: check if ssh-key exists
   become: true
@@ -33,6 +34,14 @@
     dest: "{{cluster_root}}/etc/ecc.yaml"
     owner: "{{ecc_user}}"
     force: no
+
+
+- name: add ecc to /etc/environment
+  lineinfile:
+    dest: "/etc/environment"
+    state: present
+    regexp: "^ECC_CONF="
+    line: "ECC_CONF={{cluster_root}}/etc/ecc.yaml"
 
 - name: install ecc-playbook in {{ ecc_playbook_root }}
   git:
