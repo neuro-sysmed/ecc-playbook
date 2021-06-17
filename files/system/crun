@@ -1,1 +1,0 @@
-singularity run --bind /data:/data --bind /cluster:/cluster /data/analysis/nsm-tools.sif $@

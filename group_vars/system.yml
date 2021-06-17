@@ -40,9 +40,10 @@ mysql_users:
     priv: "cromwell.*:ALL"
 
 
+nsm_tools_version: 0.3.0
+
 cluster_root: /cluster
 
-ecc_root: /cluster/lib/ecc
 ecc_user: sysadmin
 
 nsm_analysis_root: /cluster/lib/nsm-analysis

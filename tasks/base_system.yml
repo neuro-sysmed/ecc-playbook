@@ -85,8 +85,8 @@
     fstype: nfs
 
 - name: copy crun into /usr/local
-  copy:
-    src: files/system/crun
+  template:
+    src: files/system/crun.j2
     dest: /usr/local/bin/crun
     owner: root
     mode: 0755

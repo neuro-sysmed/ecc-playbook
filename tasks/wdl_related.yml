@@ -38,3 +38,16 @@
   command: 
     chdir: "{{  nsm_analysis_root }}"
     cmd: /usr/local/bin/cromwell-cli utils set-paths {{ nsm_analysis_root}}
+
+
+- name: ensure images dir exists
+  file:
+    path: /cluster/images/
+    state: directory
+
+
+- name: get nsm-tools image
+  command:
+    chdir: "{{cluster_root}}/images"
+    cmd: singularity build nsm-tools.cif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
+    
