@@ -83,3 +83,10 @@
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
+
+- name: copy crun into /usr/local
+  copy:
+    src: files/system/crun
+    dest: /usr/local/bin/crun
+    owner: root
+    mode: 0755
