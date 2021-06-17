@@ -28,6 +28,12 @@
   set_fact:
     ssh_key: "{{ssh_pub_key_cat.stdout}}"
 
+- name: ensure /cluster/etc dir exists
+  file:
+    path: /cluster/etc/
+    state: directory
+ 
+
 - name: Deploy ecc config file, will keep local copy if exists!
   template:
     src: templates/ecc/ecc.yaml.j2
