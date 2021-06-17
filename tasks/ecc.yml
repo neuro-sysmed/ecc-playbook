@@ -3,7 +3,7 @@
   pip:
     executable: pip-3
     name: git+https://github.com/neuromics/ecc.git@azure
-    extra_args: --prefix=/cluster/  --ignore-installed --no-warn-script-location
+    extra_args: --prefix=/usr/local/  --ignore-installed --no-warn-script-location
 
 - name: check if ssh-key exists
   become: true
