@@ -43,6 +43,7 @@
 
 
 - name: add ecc to /etc/environment
+  become_user: root
   lineinfile:
     dest: "/etc/environment"
     state: present
