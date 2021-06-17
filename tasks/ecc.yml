@@ -54,6 +54,7 @@
   git:
     repo: https://github.com/neuromics/ecc-playbook.git
     dest: "{{ ecc_playbook_root }}"
+    force: yes
   
 - name: create venv in {{ ecc_playbook_root }}
   command:
