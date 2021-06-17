@@ -39,7 +39,6 @@
     src: templates/ecc/ecc.yaml.j2
     dest: "{{cluster_root}}/etc/ecc.yaml"
     owner: "{{ecc_user}}"
-    force: no
 
 
 - name: add ecc to /etc/environment
