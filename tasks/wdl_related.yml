@@ -45,9 +45,8 @@
     path: /cluster/images/
     state: directory
 
-
 - name: get nsm-tools image
   command:
     chdir: "{{cluster_root}}/images"
-    cmd: singularity build nsm-tools.cif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
+    cmd: singularity build -F nsm-tools.cif docker://bruggerk/nsm-tools:{{nsm_tools_version}}
     
