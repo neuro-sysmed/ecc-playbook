@@ -34,3 +34,18 @@
     group: slurm
     backup: yes
 
+
+- name: Mount cluster NFS volume
+  ansible.posix.mount:
+    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-data
+#    src: userstoragekim.file.core.windows.net:/userstoragekim/ont    
+    path: /data
+    opts: rw,vers=4,minorversion=1,sec=sys
+    state: mounted
+    fstype: nfs
+
+
+- name: remount /data
+  ansible.posix.mount:
+    path: /data
+    state: remounted

@@ -46,7 +46,7 @@
   template: 
     src: files/slurm/slurmdbd.conf
     dest: /etc/slurm/slurmdbd.conf
-    mode: 0644
+    mode: 0600
     owner: slurm
     group: slurm
     backup: yes

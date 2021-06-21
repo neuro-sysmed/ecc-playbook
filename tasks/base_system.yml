@@ -30,19 +30,19 @@
     extra_args: --upgrade
 
 
-- name: Add another bin dir to system-wide $PATH.
-  copy:
-    dest: /etc/profile.d/custom-path.sh
-    content: 'PATH=$PATH:/cluster/bin/'
+#- name: Add another bin dir to system-wide $PATH.
+#  copy:
+#    dest: /etc/profile.d/custom-path.sh
+#    content: 'PATH=$PATH:/cluster/bin/'
 
 - name: update system
   yum:
     name: '*'
     state: latest
 
-- name: nfs /cluster
+- name: nfs /usr/local
   file:
-    path: /cluster
+    path: /usr/local
     state: directory
     owner: root
     group: root
@@ -76,10 +76,10 @@
     state: mounted
     fstype: nfs
 
-- name: Mount cluster NFS volume
+- name: Mount /usr/local/ NFS volume
   ansible.posix.mount:
-    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster
-    path: /cluster
+    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-local
+    path: /usr/local/
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs

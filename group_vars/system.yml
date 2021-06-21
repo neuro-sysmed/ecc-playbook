@@ -42,11 +42,11 @@ mysql_users:
 
 nsm_tools_version: 0.3.0
 
-cluster_root: /cluster
+cluster_root: /usr/local/
 
 ecc_user: sysadmin
 
-nsm_analysis_root: /cluster/lib/nsm-analysis
+nsm_analysis_root: "{{cluster_root}}/lib/nsm-analysis"
 nsm_analysis_user: sysadmin
 
 ecc_playbook_root: "{{cluster_root}}/lib/ecc-playbook"

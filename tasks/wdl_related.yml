@@ -19,19 +19,19 @@
 
 - name: ensure jar dir exists
   file:
-    path: /cluster/jars/
+    path: "{{cluster_root}}jars/"
     state: directory
     
 - name: download cromwell-jar
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
-    dest: /cluster/jars/
+    dest: "{{cluster_root}}jars/"
     mode: '0644'
 
 - name: download womtool-jar
   get_url: 
     url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
-    dest: /cluster/jars/
+    dest: "{{cluster_root}}jars/"
     mode: '0644'
 
 - name: make imports paths absolute
@@ -42,7 +42,7 @@
 
 - name: ensure images dir exists
   file:
-    path: /cluster/images/
+    path: "{{cluster_root}}images/"
     state: directory
 
 - name: (re)build nsm-tools image, overwrites to ensure right version

@@ -28,9 +28,9 @@
   set_fact:
     ssh_key: "{{ssh_pub_key_cat.stdout}}"
 
-- name: ensure /cluster/etc dir exists
+- name: ensure "{{cluster_root}}etc dir exists
   file:
-    path: /cluster/etc/
+    path: "{{cluster_root}}etc/"
     state: directory
  
 
