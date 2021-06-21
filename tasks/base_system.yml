@@ -86,7 +86,7 @@
 
 - name: copy crun into /usr/local
   template:
-    src: files/system/crun.j2
+    src: templates/system/crun.j2
     dest: /usr/local/bin/crun
     owner: root
     mode: 0755
