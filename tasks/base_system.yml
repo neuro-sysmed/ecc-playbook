@@ -17,6 +17,7 @@
       - singularity
 
 - name: update pip
+  become_user: "{{ecc_user}}"
   pip: 
     name: pip
     executable: pip-3
@@ -45,7 +46,7 @@
     path: /usr/local
     state: directory
     owner: root
-    group: root
+    group: sysadmin
 
 - name: nfs /data
   file:

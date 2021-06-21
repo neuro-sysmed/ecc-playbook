@@ -32,6 +32,7 @@
   file:
     path: "{{cluster_root}}etc/"
     state: directory
+    group: "{{ecc_user}}"
  
 
 - name: Deploy ecc config file, will keep local copy if exists!
