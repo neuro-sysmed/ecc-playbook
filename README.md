@@ -27,14 +27,8 @@ ansible-playbook ecc_bootstrap.yml
 az login 
 # follow instructions...
 
-deactivate
-cd /cluster/lib/ecc
-source venv/bin/activate
-./bin/ecc-cli add ecc-node 
-deactivate
+/usr/local/bin/ecc-cli add ecc-node 
 
-cd -
-source venv/bin/activate
 ansible-playbook ecc_bootstrap.yml
 
 ```
@@ -48,8 +42,8 @@ This is to be done with both the ecc-head and ecc-node vms
 go to the azure portal 
 select ecc-node (in virtual machines )
 Top bar click capture (?)
-dont share in gallery
-Auto delete after creation
+share in gallery
+Auto delete after creation (?)
 Keep default name (ecc-node-image-datetime)
 tags:
 createdBy: Your name
