@@ -37,8 +37,14 @@
 
 - name: Deploy ecc config file, will keep local copy if exists!
   template:
-    src: templates/ecc/ecc.yaml.j2
-    dest: "{{cluster_root}}/etc/ecc.yaml"
+    src: templates/ecc/ecc_utv.yaml.j2
+    dest: "{{cluster_root}}/etc/ecc_utv.yaml"
+    owner: "{{ecc_user}}"
+
+- name: Deploy ecc config file, will keep local copy if exists!
+  template:
+    src: templates/ecc/ecc_preprod.yaml.j2
+    dest: "{{cluster_root}}/etc/ecc_preprod.yaml"
     owner: "{{ecc_user}}"
 
 
