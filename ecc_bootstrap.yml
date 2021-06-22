@@ -32,10 +32,7 @@
     - name: install slurm head
       include: tasks/slurm_head.yml
       tags: 'slurm'
-    - name: azure bits
-      include: tasks/azure_cli.yml
-      tags: 'azure'
-    - name: install ecc
+    - name: install ecc bits
       become: true
       become_user: "{{ecc_user}}"
       include: tasks/ecc.yml
@@ -48,6 +45,13 @@
     - name: Install influxdb and grafana
       include: tasks/influxdb.yml
       tags: 'influxdb'
+
+
+  post_tasks:
+    - name: azure bits
+      include: tasks/azure_cli.yml
+      tags: 'azure'
+
 
 
   roles:
