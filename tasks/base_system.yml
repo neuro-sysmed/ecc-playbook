@@ -50,7 +50,7 @@
 
 - name: nfs /data
   file:
-    path: /data
+    path: /data/
     state: directory
     owner: root
     group: root
@@ -71,7 +71,7 @@
 
 - name: Mount data NFS volume
   ansible.posix.mount:
-    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-data
+    src: userstoragekim.file.core.windows.net:/userstoragekim/data
     path: /data
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
@@ -79,7 +79,7 @@
 
 - name: Mount /usr/local/ NFS volume
   ansible.posix.mount:
-    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-local
+    src: clusterresources.file.core.windows.net:/clusterresources/local
     path: /usr/local/
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
