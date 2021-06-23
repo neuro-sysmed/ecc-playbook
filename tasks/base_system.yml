@@ -20,14 +20,15 @@
   become_user: "{{ecc_user}}"
   pip: 
     name: pip
-    executable: pip-3
+    executable: pip-3.8
     extra_args: --upgrade
 
 
 - name: pip install wheel
+  become_user: "{{ecc_user}}"
   pip: 
     name: wheel
-    executable: pip-3
+    executable: pip-3.8
     extra_args: --upgrade
 
 

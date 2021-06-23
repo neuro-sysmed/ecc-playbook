@@ -35,17 +35,18 @@
     backup: yes
 
 
-- name: Mount cluster NFS volume
+- name: Mount data NFS volume
   ansible.posix.mount:
-    src: kbrnfs.file.core.windows.net:/kbrnfs/cluster-data
-#    src: userstoragekim.file.core.windows.net:/userstoragekim/ont    
+    src: userstoragekim.file.core.windows.net:/userstoragekim/data
     path: /data
+    opts: rw,vers=4,minorversion=1,sec=sys
+    state: remounted
+    fstype: nfs
+
+- name: Mount /usr/local/ NFS volume
+  ansible.posix.mount:
+    src: clusterresources.file.core.windows.net:/clusterresources/local
+    path: /usr/local/
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
     fstype: nfs
-
-
-- name: remount /data
-  ansible.posix.mount:
-    path: /data
-    state: remounted

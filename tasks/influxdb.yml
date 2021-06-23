@@ -39,7 +39,7 @@
 - name: install python-influxdb
   pip: 
     name: influxdb
-    executable: pip-3
+    executable: pip-3.8
 
 
 

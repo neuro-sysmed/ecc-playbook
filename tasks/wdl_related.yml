@@ -34,10 +34,15 @@
     dest: "{{cluster_root}}jars/"
     mode: '0644'
 
-- name: make imports paths absolute
+- name: make imports paths absolute for workflows and utils
   command: 
     chdir: "{{  nsm_analysis_root }}"
-    cmd: /usr/local/bin/cromwell-cli utils set-paths {{ nsm_analysis_root}}
+    cmd: /usr/local/bin/cromwell-cli utils patch-workflows
+
+- name: make nsm-analysis.zip file
+  command: 
+    chdir: "{{  nsm_analysis_root }}"
+    cmd: /usr/local/bin/cromwell-cli utils zip
 
 
 - name: ensure images dir exists
