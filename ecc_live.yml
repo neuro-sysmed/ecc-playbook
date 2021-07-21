@@ -42,8 +42,8 @@
       state: mounted
       fstype: nfs
 
-    - name: restart slurmd
-      systemd:
-        name: slurmd
-        enabled: true
-        state: restarted
+  - name: restart slurmd
+    systemd:
+      name: slurmd
+      enabled: true
+      state: restarted
