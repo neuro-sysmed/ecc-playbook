@@ -59,7 +59,7 @@
   ansible.posix.mount:
     src: userblobstoragekim.file.core.windows.net:/userblobstoragekim/data
     path: /data
-    opts: rw,vers=4,minorversion=1,sec=sys
+    opts: sec=sys,vers=3,nolock,proto=tcp
     state: mounted
     fstype: nfs
 
