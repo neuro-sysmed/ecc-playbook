@@ -17,7 +17,7 @@
       - singularity
 
 - name: update pip
-  become_user: "{{ecc_user}}"
+#  become_user: "{{ecc_user}}"
   pip: 
     name: pip
     executable: pip3.8
@@ -25,7 +25,7 @@
 
 
 - name: pip install wheel
-  become_user: "{{ecc_user}}"
+#  become_user: "{{ecc_user}}"
   pip: 
     name: wheel
     executable: pip3.8
