@@ -57,7 +57,7 @@
 
 - name: Mount data NFS volume
   ansible.posix.mount:
-    src: userstoragekim.file.core.windows.net:/userstoragekim/data
+    src: userblobstoragekim.file.core.windows.net:/userblobstoragekim/data
     path: /data
     opts: rw,vers=4,minorversion=1,sec=sys
     state: mounted
