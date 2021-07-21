@@ -60,7 +60,7 @@
     src: userstoragekim.file.core.windows.net:/userstoragekim/data
     path: /data
     opts: rw,vers=4,minorversion=1,sec=sys
-    state: remounted
+    state: mounted
     fstype: nfs
 
 - name: Mount /usr/local/ NFS volume
@@ -68,7 +68,7 @@
     src: clusterresources.file.core.windows.net:/clusterresources/local
     path: /usr/local/
     opts: rw,vers=4,minorversion=1,sec=sys
-    state: remounted
+    state: mounted
     fstype: nfs
 
 - name: copy crun into /usr/local
@@ -78,14 +78,12 @@
     owner: root
     mode: 0755
 
-
 - name: update pip
 #  become_user: "{{ecc_user}}"
   pip: 
     name: pip
     executable: /usr/local/bin/pip3.8
     extra_args: --upgrade
-
 
 - name: pip install wheel
 #  become_user: "{{ecc_user}}"
