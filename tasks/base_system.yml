@@ -16,21 +16,6 @@
       - munge
       - singularity
 
-- name: update pip
-#  become_user: "{{ecc_user}}"
-  pip: 
-    name: pip
-    executable: /usr/local/bin/pip3.8
-    extra_args: --upgrade
-
-
-- name: pip install wheel
-#  become_user: "{{ecc_user}}"
-  pip: 
-    name: wheel
-    executable: /usr/local/bin/pip3.8
-    extra_args: --upgrade
-
 
 #- name: Add another bin dir to system-wide $PATH.
 #  copy:
@@ -93,3 +78,18 @@
     owner: root
     mode: 0755
 
+
+- name: update pip
+#  become_user: "{{ecc_user}}"
+  pip: 
+    name: pip
+    executable: /usr/local/bin/pip3.8
+    extra_args: --upgrade
+
+
+- name: pip install wheel
+#  become_user: "{{ecc_user}}"
+  pip: 
+    name: wheel
+    executable: /usr/local/bin/pip3.8
+    extra_args: --upgrade
