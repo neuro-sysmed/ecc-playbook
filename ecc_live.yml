@@ -24,7 +24,24 @@
 
 - hosts: node
   become: true
+  
   tasks:
+  - name: Mount data NFS volume
+    ansible.posix.mount:
+      src: userstoragekim.file.core.windows.net:/userstoragekim/data
+      path: /data
+      opts: rw,vers=4,minorversion=1,sec=sys
+      state: remounted
+      fstype: nfs
+
+  - name: Mount /usr/local/ NFS volume
+    ansible.posix.mount:
+      src: clusterresources.file.core.windows.net:/clusterresources/local
+      path: /usr/local/
+      opts: rw,vers=4,minorversion=1,sec=sys
+      state: mounted
+      fstype: nfs
+
     - name: restart slurmd
       systemd:
         name: slurmd
