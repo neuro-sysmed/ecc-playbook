@@ -2,6 +2,9 @@
 - hosts: all
   become: true
 
+  tags:
+    - slurmconfig
+
   vars_files:
     group_vars/system.yml
 
@@ -15,6 +18,8 @@
 
 - hosts: head
   become: true
+  tags:
+    - head
   tasks:
     - name: restart slurmctld
       systemd:
@@ -24,15 +29,18 @@
 
 - hosts: node
   become: true
+  tags:
+    - nodes
   
   tasks:
   - name: Mount data NFS volume
     ansible.posix.mount:
-      src: userstoragekim.file.core.windows.net:/userstoragekim/data
+      src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
       path: /data
-      opts: rw,vers=4,minorversion=1,sec=sys
-      state: remounted
+      opts: sec=sys,vers=3,nolock,proto=tcp
+      state: mounted
       fstype: nfs
+
 
   - name: Mount /usr/local/ NFS volume
     ansible.posix.mount:
