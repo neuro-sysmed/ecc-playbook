@@ -16,22 +16,11 @@
       include: tasks/slurm_live.yml
       
 
-- hosts: head
-  become: true
-  tags:
-    - head
-  tasks:
-    - name: restart slurmctld
-      systemd:
-        name: slurmctld
-        enabled: true
-        state: restarted
-
 - hosts: node
   become: true
   tags:
     - nodes
-  
+
   tasks:
   - name: Mount data NFS volume
     ansible.posix.mount:
@@ -40,7 +29,16 @@
       opts: sec=sys,vers=3,nolock,proto=tcp
       state: mounted
       fstype: nfs
+    when: False
 
+  - name: Mount data NFS volume
+    ansible.posix.mount:
+      src: userstoragekim.file.core.windows.net:/userstoragekim/data
+      path: /data
+      opts: rw,vers=4,minorversion=1,sec=sys
+      state: mounted
+      fstype: nfs
+    when: True
 
   - name: Mount /usr/local/ NFS volume
     ansible.posix.mount:
@@ -55,3 +53,15 @@
       name: slurmd
       enabled: true
       state: restarted
+
+- hosts: head
+  become: true
+  tags:
+    - head
+  tasks:
+    - name: restart slurmctld
+      systemd:
+        name: slurmctld
+        enabled: true
+        state: restarted
+

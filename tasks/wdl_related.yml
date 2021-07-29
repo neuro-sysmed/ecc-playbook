@@ -14,7 +14,6 @@
   git:
     repo: https://github.com/neuromics/nsm-analysis.git
     dest: "{{ nsm_analysis_root }}"
-    version: reorg
     force: yes
 
 - name: ensure jar dir exists
@@ -34,10 +33,16 @@
     dest: "{{cluster_root}}jars/"
     mode: '0644'
 
-- name: make imports paths absolute for workflows and utils
+#- name: make imports paths absolute for workflows and utils
+#  command: 
+#    chdir: "{{  nsm_analysis_root }}"
+#    cmd: /usr/local/bin/cromwell-cli utils patch-workflows
+
+- name: make imports paths absolute version.json file in versions.wdl
   command: 
     chdir: "{{  nsm_analysis_root }}"
-    cmd: /usr/local/bin/cromwell-cli utils patch-workflows
+    cmd: /usr/local/bin/cromwell-cli utils patch-versionfile
+
 
 - name: make nsm-analysis.zip file
   command: 

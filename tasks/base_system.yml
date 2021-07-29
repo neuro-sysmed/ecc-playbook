@@ -55,6 +55,16 @@
     enabled: true
     state: started
 
+- name: Mount data NFS volume (cheap)
+  ansible.posix.mount:
+    src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
+    path: /data
+    opts: sec=sys,vers=3,nolock,proto=tcp
+    state: mounted
+    fstype: nfs
+  when: False
+
+
 - name: Mount data NFS volume
   ansible.posix.mount:
     src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
@@ -62,6 +72,8 @@
     opts: sec=sys,vers=3,nolock,proto=tcp
     state: mounted
     fstype: nfs
+  when: True
+
 
 - name: Mount /usr/local/ NFS volume
   ansible.posix.mount:
