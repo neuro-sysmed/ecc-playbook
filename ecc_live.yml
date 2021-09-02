@@ -31,6 +31,13 @@
       fstype: nfs
     when: False
 
+  - name: Unmount data NFS volume
+    ansible.posix.mount:
+      path: /data
+      state: unmounted
+      fstype: nfs
+
+
   - name: Mount data NFS volume
     ansible.posix.mount:
       src: userstoragekim.file.core.windows.net:/userstoragekim/data
