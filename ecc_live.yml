@@ -1,4 +1,14 @@
 # this is needed otherwise not all information will be available for creating the slurm config for the controller.
+- hosts: small, medium, large, huge
+  become: true
+  tags:
+    - nodes
+
+
+  tasks:
+    - name: setup partitions
+      include: tasks/live_cluster.yml
+
 - hosts: all
   become: true
 
@@ -17,15 +27,6 @@
       include: tasks/slurm_live.yml
       
 
-- hosts: small, medium, large, huge
-  become: true
-  tags:
-    - nodes
-
-
-  tasks:
-    - name: setup partitions
-      include: tasks/live_cluster.yml
  
 
 - hosts: head
