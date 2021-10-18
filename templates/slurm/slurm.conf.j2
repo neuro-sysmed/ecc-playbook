@@ -18,13 +18,31 @@ SlurmUser=slurm
 StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
-# Nodes
-{% for i in slurm_nodes %}
+NodeName=localhost State=UNKNOWN
+
+{% for i in small %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
-{% else %}
-NodeName=localhost State=UNKNOWN
+{% endfor %}
+
+{% for i in medium %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
+{% endfor %}
+
+{% for i in large %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
+{% endfor %}
+
+{% for i in huge %}
+NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
+
 {% endfor %}
 
 # Partition
-PartitionName=azure State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'node' ] | join(',') }}
+PartitionName=small State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'small' ] | join(',') }}
+PartitionName=medium State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'medium' ] | join(',') }}
+PartitionName=large State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'large' ] | join(',') }}
+PartitionName=huge State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'huge' ] | join(',') }}
+

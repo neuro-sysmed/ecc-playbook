@@ -12,47 +12,19 @@
     - name: Create users and groups
       include: tasks/users_groups.yml
       tags: 'users'
+
     - name: Update slurm config
       include: tasks/slurm_live.yml
       
 
-- hosts: node
+- hosts: small, medium, large, huge
   become: true
   tags:
     - nodes
 
-  tasks:
-  - name: Mount data NFS volume
-    ansible.posix.mount:
-      src: userblobstoragekim.blob.core.windows.net:/userblobstoragekim/data
-      path: /data
-      opts: sec=sys,vers=3,nolock,proto=tcp
-      state: mounted
-      fstype: nfs
-    when: False
+  include_tasks:
+    file: tasks/live_cluster.yml
 
-  - name: Mount data NFS volume
-    ansible.posix.mount:
-      src: userstoragekim.file.core.windows.net:/userstoragekim/data
-      path: /data
-      opts: rw,vers=4,minorversion=1,sec=sys,sync
-      state: mounted
-      fstype: nfs
-    when: True
-
-  - name: Mount /usr/local/ NFS volume
-    ansible.posix.mount:
-      src: clusterresources.file.core.windows.net:/clusterresources/local
-      path: /usr/local/
-      opts: rw,vers=4,minorversion=1,sec=sys,sync
-      state: mounted
-      fstype: nfs
-
-  - name: restart slurmd
-    systemd:
-      name: slurmd
-      enabled: true
-      state: restarted
 
 - hosts: head
   become: true

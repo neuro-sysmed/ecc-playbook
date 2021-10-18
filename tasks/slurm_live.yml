@@ -1,29 +1,63 @@
-# Dont like this, but works for now
-- name: create dynamic slurm node list (debug)
-  debug:
-    msg:
-    - "hostname: {{ item }}"
-    - "cores: {{ hostvars[ item ].ansible_processor_cores }}"
-    - "CPUs: {{ hostvars[ item ].ansible_processor_count }}"
-    - "threads: {{ hostvars[ item ].ansible_processor_threads_per_core }}"
-    - "vcpus: {{ hostvars[ item ].ansible_processor_vcpus }}"
-    - "mem: {{ hostvars[ item ].ansible_memtotal_mb }}"
-  with_items: "{{ groups['node'] }}"
+# # Dont like this, but works for now
+# - name: create dynamic slurm node list (debug)
+#   debug:
+#     msg:
+#     - "hostname: {{ item }}"
+#     - "cores: {{ hostvars[ item ].ansible_processor_cores }}"
+#     - "CPUs: {{ hostvars[ item ].ansible_processor_count }}"
+#     - "threads: {{ hostvars[ item ].ansible_processor_threads_per_core }}"
+#     - "vcpus: {{ hostvars[ item ].ansible_processor_vcpus }}"
+#     - "mem: {{ hostvars[ item ].ansible_memtotal_mb }}"
+#   with_items: "{{ groups['node'] }}"
 
 
 
 # Dont like this, but works for now
 - name: create dynamic slurm node list
   set_fact:
-    slurm_nodes: "{{ slurm_nodes|default([]) + [ {'name': item,
-                                                  'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
-                                                  'Sockets': hostvars[ item ].ansible_processor_count,
-                                                  'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
-                                                  'CPUs': hostvars[ item ].ansible_processor_vcpus,
-                                                  'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
+    slurm_nodes: "{{ small|default([]) + [ {'name': item,
+                                            'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
+                                            'Sockets': hostvars[ item ].ansible_processor_count,
+                                            'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
+                                            'CPUs': hostvars[ item ].ansible_processor_vcpus,
+                                            'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
 
-  with_items: "{{ groups['node'] }}"
+  with_items: "{{ groups['small'] }}"
 
+
+- name: create dynamic slurm node list
+  set_fact:
+    slurm_nodes: "{{ medium|default([]) + [ {'name': item,
+                                            'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
+                                            'Sockets': hostvars[ item ].ansible_processor_count,
+                                            'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
+                                            'CPUs': hostvars[ item ].ansible_processor_vcpus,
+                                            'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
+
+  with_items: "{{ groups['medium'] }}"
+
+
+- name: create dynamic slurm node list
+  set_fact:
+    slurm_nodes: "{{ large|default([]) + [ {'name': item,
+                                            'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
+                                            'Sockets': hostvars[ item ].ansible_processor_count,
+                                            'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
+                                            'CPUs': hostvars[ item ].ansible_processor_vcpus,
+                                            'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
+
+  with_items: "{{ groups['large'] }}"
+
+- name: create dynamic slurm node list
+  set_fact:
+    slurm_nodes: "{{ huge|default([]) + [ {'name': item,
+                                            'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
+                                            'Sockets': hostvars[ item ].ansible_processor_count,
+                                            'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
+                                            'CPUs': hostvars[ item ].ansible_processor_vcpus,
+                                            'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
+
+  with_items: "{{ groups['huge'] }}"
 
 - name: copy slurm conf
   template: 
