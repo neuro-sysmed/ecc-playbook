@@ -22,9 +22,11 @@
   tags:
     - nodes
 
-  include_tasks:
-    file: tasks/live_cluster.yml
 
+  tasks:
+    - name: setup partitions
+      include: tasks/live_cluster.yml
+ 
 
 - hosts: head
   become: true
