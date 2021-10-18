@@ -1,4 +1,4 @@
-# # Dont like this, but works for now
+# Dont like this, but works for now
 # - name: create dynamic slurm node list (debug)
 #   debug:
 #     msg:
@@ -8,26 +8,25 @@
 #     - "threads: {{ hostvars[ item ].ansible_processor_threads_per_core }}"
 #     - "vcpus: {{ hostvars[ item ].ansible_processor_vcpus }}"
 #     - "mem: {{ hostvars[ item ].ansible_memtotal_mb }}"
-#   with_items: "{{ groups['node'] }}"
+#   with_items: "{{ groups['small'] }}"
 
 
 
 # Dont like this, but works for now
 - name: create dynamic small slurm node list
   set_fact:
-    slurm_nodes: "{{ small|default([]) + [ {'name': item,
+    small: "{{ small|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
                                             'Sockets': hostvars[ item ].ansible_processor_count,
                                             'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
                                             'CPUs': hostvars[ item ].ansible_processor_vcpus,
                                             'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
-
   with_items: "{{ groups['small'] }}"
 
 
 - name: create dynamic medium slurm node list
   set_fact:
-    slurm_nodes: "{{ medium|default([]) + [ {'name': item,
+    medium: "{{ medium|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
                                             'Sockets': hostvars[ item ].ansible_processor_count,
                                             'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
@@ -39,7 +38,7 @@
 
 - name: create dynamic large slurm node list
   set_fact:
-    slurm_nodes: "{{ large|default([]) + [ {'name': item,
+    large: "{{ large|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
                                             'Sockets': hostvars[ item ].ansible_processor_count,
                                             'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
@@ -50,7 +49,7 @@
 
 - name: create dynamic huge slurm node list
   set_fact:
-    slurm_nodes: "{{ huge|default([]) + [ {'name': item,
+    huge: "{{ huge|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
                                             'Sockets': hostvars[ item ].ansible_processor_count,
                                             'ThreadsPerCore':  hostvars[ item ].ansible_processor_threads_per_core,
