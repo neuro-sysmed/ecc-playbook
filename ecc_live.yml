@@ -1,4 +1,4 @@
-- hosts: head, small, medium, large, huge
+- hosts: all
   become: true
 
   tags:

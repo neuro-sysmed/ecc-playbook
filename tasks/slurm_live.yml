@@ -13,7 +13,7 @@
 
 
 # Dont like this, but works for now
-- name: create dynamic slurm node list
+- name: create dynamic small slurm node list
   set_fact:
     slurm_nodes: "{{ small|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
@@ -25,7 +25,7 @@
   with_items: "{{ groups['small'] }}"
 
 
-- name: create dynamic slurm node list
+- name: create dynamic medium slurm node list
   set_fact:
     slurm_nodes: "{{ medium|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
@@ -37,7 +37,7 @@
   with_items: "{{ groups['medium'] }}"
 
 
-- name: create dynamic slurm node list
+- name: create dynamic large slurm node list
   set_fact:
     slurm_nodes: "{{ large|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
@@ -46,9 +46,9 @@
                                             'CPUs': hostvars[ item ].ansible_processor_vcpus,
                                             'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
 
-  with_items: "{{ groups['large'] }}"
+  with_items: "{{ groups['large']|default([]) }}"
 
-- name: create dynamic slurm node list
+- name: create dynamic huge slurm node list
   set_fact:
     slurm_nodes: "{{ huge|default([]) + [ {'name': item,
                                             'CoresPerSocket': hostvars[ item ].ansible_processor_cores,
@@ -57,7 +57,7 @@
                                             'CPUs': hostvars[ item ].ansible_processor_vcpus,
                                             'RealMemory': hostvars[ item ].ansible_memtotal_mb} ] }}"
 
-  with_items: "{{ groups['huge'] }}"
+  with_items: "{{ groups['huge']|default([]) }}"
 
 - name: copy slurm conf
   template: 
