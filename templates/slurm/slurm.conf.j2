@@ -19,13 +19,13 @@ StateSaveLocation=/var/lib/slurm/slurmctld
 TaskPlugin=task/cgroup
 
 
-{% for i in small %}
+{% for i in small|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
 NodeName=ecc-small-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPerCore=1
 
-{% for i in medium %}
+{% for i in medium|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
@@ -45,9 +45,9 @@ NodeName=ecc-huge-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPe
 
 
 # Partition
-PartitionName=small State=UP MaxTime=UNLIMITED Default=YES Nodes=ecc-small-0,{{ groups[ 'small' ]|default([]) | join(',') }}
-PartitionName=medium State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-medium-0,{{ groups[ 'medium' ]|default([]) | join(',') }}
-PartitionName=large State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-large-0,{{ groups[ 'large' ]|default([]) | join(',') }}
-PartitionName=huge State=UP MaxTime=UNLIMITED Default=NO Nodes=ecc-huge-0,{{ groups[ 'huge' ]|default([]) | join(',') }}
+PartitionName=small State=UP MaxTime=UNLIMITED Default=YES Nodes={{ groups[ 'small' ]|default(['ecc-small-0']) | join(',') }}
+PartitionName=medium State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'medium' ]|default(['ecc-medium-0']) | join(',') }}
+PartitionName=large State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'large' ]|default(['ecc-large-0']) | join(',') }}
+PartitionName=huge State=UP MaxTime=UNLIMITED Default=NO Nodes={{ groups[ 'huge' ]|default(['ecc-huge-0']) | join(',') }}
 
 
