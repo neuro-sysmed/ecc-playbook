@@ -23,25 +23,25 @@ TaskPlugin=task/cgroup
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
-NodeName=ecc-small-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+NodeName=ecc-small-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
 
 {% for i in medium|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
-NodeName=ecc-medium-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+NodeName=ecc-medium-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
 
 {% for i in large|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
-NodeName=ecc-large-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPerCore=2
+NodeName=ecc-large-0 CoresPerSocket=1 CPUs=2 RealMemory=7962 Sockets=1 ThreadsPerCore=2
 
 {% for i in huge|default([]) %}
 NodeName={{ i.name }}{% for k in i | sort if k != 'name' %} {{ k }}={{ 'YES' if i[k] is sameas true else ('NO' if i[k] is sameas false else i[k]) }}{% endfor %}
 
 {% endfor %}
-NodeName=ecc-huge-0 CoresPerSocket=1 CPUs=32 RealMemory=7962 Sockets=1 ThreadsPerCore=1
+NodeName=ecc-huge-0 CoresPerSocket=1 CPUs=1 RealMemory=7962 Sockets=1 ThreadsPerCore=1
 
 
 # Partition
