@@ -1,7 +1,4 @@
 ---
-- name: enable epel
-  package:
-    name: epel-release
 
 - name: Install Dependencies
   package:
@@ -9,10 +6,10 @@
       - python38
       - git
       - jq
-      - nfs-utils
+      - nfs-common
       - vim 
-      - libcgroup
-      - libcgroup-tools
+      - cgroup-tools
+      - libcgroup1
       - munge
       - singularity
 
