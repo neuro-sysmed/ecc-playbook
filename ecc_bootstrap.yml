@@ -1,6 +1,8 @@
 # this is needed otherwise not all information will be available for creating the slurm config for the controller.
 - hosts: all
   become: true
+  hosts: localhost
+  connection: local
 
   tags:
     - basesystem

@@ -3,7 +3,6 @@
 - name: Install Dependencies
   package:
     name:
-      - python38
       - git
       - jq
       - nfs-common
