@@ -25,6 +25,8 @@
 
 - hosts: head
   become: true
+  hosts: localhost
+  connection: local
 
   vars_files:
    - group_vars/system.yml
