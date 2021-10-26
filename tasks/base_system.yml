@@ -18,10 +18,11 @@
 #    dest: /etc/profile.d/custom-path.sh
 #    content: 'PATH=$PATH:/cluster/bin/'
 
-- name: update system
-  yum:
-    name: '*'
-    state: latest
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: nfs /usr/local
   file:
