@@ -1,4 +1,9 @@
 # ecc-playbook
+
+Have been integrated into neuro-sysmed infrastructure-playbook 
+
+
+
 Playbooks for ecc
 
 
